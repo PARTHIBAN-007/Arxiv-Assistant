@@ -11,7 +11,6 @@ function App() {
     if (!input.trim()) return;
     setMessages([...messages, { sender: "user", text: input }]);
     setInput("");
-    // Here you would add logic to get assistant's response
   };
 
   return (
