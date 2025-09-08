@@ -12,7 +12,7 @@ class PaperRepository:
     def __init__(self,session:Session):
         self.session = session
 
-    def create(self,paper:PaperCreate) -> Paper:
+    def creat(self,paper:PaperCreate) -> Paper:
         db_paper = Paper(**paper.model_dump())
         self.session.add(db_paper)
         self.session.commit()
