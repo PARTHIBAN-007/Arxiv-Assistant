@@ -98,6 +98,23 @@ class OpenSearchSettings(BaseCOnfigSettings):
     hybrid_search_size_multiplier:int = 2
 
 
+class RedisSettings(BaseCOnfigSettings):
+    model_config = SettingsConfigDict(
+         env_file=[".env",str(ENV_FILE_PATH)],
+        env_prefix= "REDIS__",
+        extra = "ignore",
+        frozen = True,
+        case_sensitive=False
+    )
+    host: str = "localhost"
+    port: int = 6379
+    password: str = ""
+    db: int = 0
+    decode_response: bool = True
+    socket_timeout: int = 30
+    socket_connection_timeout: int = 30
+    ttl_hours: int = 6
+
 class Settings(BaseCOnfigSettings):
     app_version: str = "0.1.0"
     debug:bool = True
