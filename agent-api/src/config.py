@@ -97,6 +97,24 @@ class OpenSearchSettings(BaseCOnfigSettings):
     rrf_pipeline_nmae:str = "hybrid-rrf-pipeline"
     hybrid_search_size_multiplier:int = 2
 
+class LangfuseSettings(BaseCOnfigSettings):
+    model_config = SettingsConfigDict(
+        env_file = [".env", str(ENV_FILE_PATH)],
+        env_prefix = "LANGFUSE_",
+        extra = "ignore",
+        frozen = True,
+        case_sensitive = False,
+    )
+    public_key: str = ""
+    secret_key: str = ""
+    host: str = "http://localhost:300"
+    enabled: bool = True
+    flush_at: int = 15
+    flush_interval: float = 1.0
+    max_retries: int =3
+    timeount: int = 30
+    debug: bool = False
+
 
 class RedisSettings(BaseCOnfigSettings):
     model_config = SettingsConfigDict(
@@ -130,6 +148,8 @@ class Settings(BaseCOnfigSettings):
     pdf_parser : PDFParserSettings = Field(default_factory=PDFParserSettings)
     chunking: ChunkingSettings = Field(default_factory=ChunkingSettings)
     opensearch: OpenSearchSettings = Field(default_factory=OpenSearchSettings)
+    langfuse: LangfuseSettings = Field(default_factory = LangfuseSettings)
+    redis: RedisSettings = Field(default_factory = RedisSettings)
 
     @field_validator("postgres_database_url")
     @classmethod
