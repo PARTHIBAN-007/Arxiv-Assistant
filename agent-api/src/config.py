@@ -144,6 +144,11 @@ class Settings(BaseCOnfigSettings):
     postgres_pool_size: int = 20
     postgres_max_overflow: int = 0
 
+    ollama_host: str = "http://localhost:11434"
+    ollama_model: str = "llama3.2:1b"
+    ollama_timeout: int = 300
+
+
     arxiv: ArxivSettings = Field(default_factory=ArxivSettings)
     pdf_parser : PDFParserSettings = Field(default_factory=PDFParserSettings)
     chunking: ChunkingSettings = Field(default_factory=ChunkingSettings)
