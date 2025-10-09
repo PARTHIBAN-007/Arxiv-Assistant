@@ -2,10 +2,9 @@ import asyncio
 from loguru import logger
 from datetime import datetime, timedelta, timezone
 
-
-from src.db.factory import make_database
-from src.services.indexing.factory import make_hybrid_indexing_service
-from src.services.opensearch.factory import make_opensearch_client_fresh
+from agent_api.src.db.factory import make_database
+from agent_api.src.services.indexing.factory import make_hybrid_indexing_service
+from agent_api.src.services.opensearch.factory import make_opensearch_client_fresh
 
 async def _index_papers_with_chunks(papers):
     """Async helper to index papers with chunking and embedding"""
